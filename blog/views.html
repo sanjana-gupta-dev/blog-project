@@ -1,0 +1,14 @@
+from django.contrib import admin
+from django.urls import path
+from blog.views import blog_home, about
+
+def home(request):
+    from django.http import HttpResponse
+    return HttpResponse("Hello Sanjana 😄")
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', home),
+    path('blog/', blog_home),
+    path('about/', about),
+]

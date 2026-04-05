@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial;
+    background: #f2f2f2;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.post {
+    background: white;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+img {
+    border-radius: 10px;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    background: #ff4d4d;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="top-bar">
+    <h1>My Blog 😍</h1>
+    <a href="/logout/"><button style="background:black;">Logout 🚪</button></a>
+</div>
+
+<a href="/add/"><button>Add New Post ➕</button></a>
+
+{% for post in posts %}
+<div class="post">
+
+<h2>{{ post.title }}</h2>
+
+<p style="color:gray; font-size:14px;">
+    By {{ post.author }} | {{ post.created_at|date:"d M Y, H:i" }}
+</p>
+
+<p>{{ post.content }}</p>
+
+{% if post.image %}
+    <img src="{{ post.image.url }}" width="300"><br><br>
+{% endif %}
+
+<a href="/edit/{{ post.id }}/"><button>Edit ✏️</button></a>
+<a href="/delete/{{ post.id }}/"><button>Delete ❌</button></a>
+
+</div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>
